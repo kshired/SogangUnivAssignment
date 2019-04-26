@@ -1,0 +1,22 @@
+# [ ERROR ] without no argument!
+if [ $# -le 0 ]
+then
+	echo "Usage: phone searchfor [… searchfor]"
+	echo "(You didn’t tell me what you want to search for.)"
+exit 0
+fi
+
+# [ GENERATE QUERY STR ]
+# EX) arg1 arg2 arg3 ---> arg1|arg2|arg3i
+query=""
+for arg in "${@:1}"
+do
+	query=$query\|$arg
+done
+
+# |arg1|arg2|arg3.... --> arg1|arg2|arg3...
+query="${query:1}"
+
+# [PRINT]
+eval 'egrep -i "($query)" mydata | awk -f display.awk'
+exit 0

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html> 
+    <head>
+		<meta charset="utf-8">
+        <title> 이미지 앨범 </title>
+        <style type="text/css">
+            table {
+                margin-top: 60px;
+                border: 4px solid #4e69ac;
+            }
+        </style>
+    </head>
+    <body bgcolor=#87ceeb>
+        <script>alert("이미지 앨범에 들어오신것을 환영해요!");</script>
+        <center>
+            <table margin-top: 100px; border="0" cellpadding="3" bgcolor=#000080 width=300>
+                <tr height=300>
+                    <td align="center">
+                    <!---- 맨처음 보여줄 이미지 설정  ---->
+                    <img src="images/0.jpg" name="gallery" width="300" height="350" >
+                    <p style="color:white; font-size:20px;">Image album!</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <form name="menu">
+                            <script>
+                                var which=0;
+                                function forward(){
+                                    var pos = document.getElementsByName("gallery");
+                                    if(which<9){
+                                        which++;
+                                        pos[0].src = "images/" + which + ".jpg";
+                                    }else{
+                                        alert("0번째 이미지부터 다시!");
+                                        which -= 9;
+                                        pos[0].src = "images/" + which + ".jpg";
+                                    }
+                                    document.getElementById("where").innerHTML = "현재 이미지 : images/"+which+".jpg";
+                                }
+                                function backward(){
+                                    var pos = document.getElementsByName("gallery");
+                                    if(which>0){
+                                        which--;
+                                        pos[0].src = "images/" + which + ".jpg";
+                                    }else{
+                                        alert("9번째 이미지부터 다시!");
+                                        which--;
+                                        which += 10;
+                                        pos[0].src = "images/" + which + ".jpg";
+                                    }
+                                    document.getElementById("where").innerHTML= "현재 이미지 : images/"+which+".jpg";
+                                }
+                                function home(){
+                                    alert("처음으로!");
+                                    var pos = document.getElementsByName("gallery");
+                                    which = 0;
+                                    pos[0].src = "images/" + which + ".jpg";
+                                    document.getElementById("where").innerHTML = "현재 이미지 : images/"+which+".jpg";
+                                }
+                            </script>
+                            <input type="button" value="<<뒤로" onClick="backward()"> 
+                            <input type="button" value="처음" onClick="home()">
+                            <input type="button" value="앞으로>>"  onClick="forward()">
+                        </form> 
+                        <p id="where" style="color:white;">현재 이미지 : images/0.jpg</p>
+                    </td>  
+                </tr>     
+            </table>     
+        </center>
+    </body>
+</html>
+    
